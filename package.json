@@ -2,7 +2,7 @@
   "name": "MyApp",
   "version": "1.0.0",
   "main": "server/index.js",
-  "description": "A rapid project starter for Node, Express and Angular.",
+  "description": "A rapid project starter for Angular with Maps",
   "engines": {
     "node": ">=0.10.0"
   },
