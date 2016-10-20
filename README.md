@@ -1,10 +1,4 @@
-# Node Catapult - Angular
-
-A boilerplate starter project that includes Node, Express, and Angular:
-
-* Lightweight - Comprehend everything.
-* Logical - Firm basics for development and production.
-* Swift - Get started immediately.
+# ISS Tracker - Angular
 
 ## Getting Started
 
@@ -16,11 +10,8 @@ $ bower install
 $ npm start
 ```
 
-Now visit [localhost:4000](http://localhost:4000/)
+Now visit [localhost:8000](http://localhost:8000/)
 
 ### Running the Tests
 
 There is a basic test framework in your `test/` folder. To run the tests, simply run `npm test`.
-
-## Credits
-Inspired by the original Node-Catapult developed by mindeavor found at: https://github.com/Concatapult/node-catapult
