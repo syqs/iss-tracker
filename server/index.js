@@ -20,7 +20,7 @@ routes.get('/api', function(req, res) {
   }
   
   var twitter = new Twitter(config);
-
+  
   // Get 10 tweets containing the keywords
   twitter.get('search/tweets', {
     q: 'space OR spacemedicine OR nasa OR Anasa OR spacex OR Aspacex OR mars OR zerogravity OR rocketscience',
