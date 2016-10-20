@@ -3,8 +3,8 @@
 ## Getting Started
 
 ```
-$ git clone https://github.com/dYale/node-catapult-angular my-project
-$ cd my-project
+$ git clone https://github.com/syqs/iss-tracker.git myApp
+$ cd myApp
 $ npm install
 $ bower install
 $ npm start
