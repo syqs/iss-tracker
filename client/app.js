@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('myApp', [
-    'ui.router'
+    'ui.router',
+    'uiGmapgoogle-maps'
   ])
 
     .config(function($stateProvider, $urlRouterProvider) {
@@ -15,10 +16,4 @@ angular.module('myApp', [
             controller: 'MainCtrl'
         })
 
-        .state('about', {
-          url: '/about',
-          templateUrl: 'views/about.html',
-          controller: 'AboutCtrl'
-        });
-        
 });

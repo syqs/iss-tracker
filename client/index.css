@@ -1,6 +1,30 @@
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size:12px;
+}
+#iss {
+  position: absolute;
+  background: #fff;
+  opacity: 0.8;
+  color: #000;
+  top:20px;
+  right:20px;
+  z-index: 100;
+  padding: 15px;
+}
+.angular-google-map-container {
+  height: 400px;
+}
+
+#twitterFeed {
+  width:80%;
+  margin: auto;
+}
 h1{
-	color: #2380E2;
-	font-family: sans-serif;
+  color: #2380E2;
+  font-family: sans-serif;
 }
 
 .btn {
@@ -20,7 +44,7 @@ h1{
 
 
 .jumbotron{
-	background-color: #dcdcdc;
-	text-align: center;
-	border-radius: 2px;
+  background-color: #dcdcdc;
+  text-align: center;
+  border-radius: 2px;
 }

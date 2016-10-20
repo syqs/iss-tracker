@@ -7,8 +7,10 @@
     "node": ">=0.10.0"
   },
   "dependencies": {
+    "body-parser": "^1.14.1",
     "express": "^4.13.1",
-    "body-parser": "^1.14.1"
+    "twitter": "^1.4.0",
+    "twitter-js-client": "0.0.5"
   },
   "devDependencies": {
     "chai": "^3.4.0",
