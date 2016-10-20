@@ -26,7 +26,6 @@ angular.module('myApp')
     // Initiate a call to backend
     $http.get("/api")
       .then(function(feeds) {
-        console.log(feeds)
         $scope.tweets = feeds.data.statuses
       })
       .catch(function(err) {
@@ -36,9 +35,15 @@ angular.module('myApp')
 
   // Draw the map 
   $scope.drawMap = function(){
-    console.log($scope.iss)
-    var lat =  -31.54961366315104;
-    var lng = -105.60398630491167;
+    var lat;
+    var lng;
+    if ($scope.iss.location){
+      lat = $scope.iss.location.latitude;
+      lng = $scope.iss.location.longitude;
+    }else{
+      lat =  -31.54961366315104;
+      lng = -105.60398630491167;
+    }
     var latlng = new google.maps.LatLng(lat, lng);
     var myOptions = {
       zoom: 2,
@@ -50,7 +55,7 @@ angular.module('myApp')
 
   // Get the location of ISS
   $scope.getIssLoc = function() {
-    if(counter<1){
+    if(counter<2){
       $scope.drawMap();
       counter++
     }
@@ -58,7 +63,6 @@ angular.module('myApp')
     // Initiate a call to back end
     $http.get("/issLocation")
       .then(function(location) {
-        console.log(location)
         $scope.iss.location = location.data.iss_position;
         
         // Create a marker with latest position
@@ -74,7 +78,6 @@ angular.module('myApp')
 
   //Add single Marker
   $scope.addMarker = function(pos) {
-    // marker.setMap(null);
     var icons = 'images/iss-ico.png'
     var marker = new google.maps.Marker({
       position: {

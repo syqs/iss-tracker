@@ -52,6 +52,7 @@ routes.get('/issLocation', function(req, res) {
   });
 });
 
+// Setup express to serve the frontend to the client
 if (process.env.NODE_ENV !== 'test') {
 
   // The Catch-all Route
@@ -75,7 +76,7 @@ if (process.env.NODE_ENV !== 'test') {
   app.listen(port);
   console.log("Listening on port", port);
 } else {
-  
+
   // We're in test mode; make this file importable instead.
   module.exports = routes;
 }
