@@ -74,6 +74,7 @@ angular.module('myApp')
 
   //Add single Marker
   $scope.addMarker = function(pos) {
+    // marker.setMap(null);
     var icons = 'images/iss-ico.png'
     var marker = new google.maps.Marker({
       position: {
