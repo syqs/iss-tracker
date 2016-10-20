@@ -1,10 +1,10 @@
-<div id="iss">ISS position: {{issLocation.latitude}}:{{issLocation.longitude}}</div>
+<div id="iss">ISS position: {{iss.location.latitude}}:{{iss.location.longitude}}</div>
+
 <div id="map">
-	<ui-gmap-google-map center='map.center' zoom='map.zoom'>
-		<ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
-        </ui-gmap-marker>
-	</ui-gmap-google-map>
+    <map id="map" on-create="mapCreated(map)" data-tap-disabled="true"></map>
 </div>
+
 <div id="twitterFeed">
+<h3> Twitter feeds</h3>
 	<p ng-repeat='feed in tweets'> {{feed.text}} </p>
 </div>

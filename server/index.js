@@ -18,6 +18,7 @@ routes.get('/api', function(req, res) {
     "consumerSecret": "",
     "bearer_token": ""
   }
+  
   var twitter = new Twitter(config);
 
   // Get 10 tweets containing the keywords
@@ -52,18 +53,15 @@ routes.get('/issLocation', function(req, res) {
 });
 
 if (process.env.NODE_ENV !== 'test') {
-  //
+
   // The Catch-all Route
   // This is for supporting browser history pushstate.
-
   routes.get('/*', function(req, res) {
     res.sendFile(assetFolder + '/index.html')
   })
 
-  //
   // We're in development or production mode;
   // create and run a real server.
-  //
   var app = express();
 
   // Parse incoming request bodies as JSON
