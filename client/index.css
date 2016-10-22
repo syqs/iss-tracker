@@ -4,6 +4,12 @@ html, body {
   padding: 0;
   font-size:12px;
 }
+
+canvas {
+  width: 80%;
+  height: 80% 
+}
+
 #iss {
   -webkit-border-radius: 12px;
   -webkit-border-bottom-left-radius: 0;

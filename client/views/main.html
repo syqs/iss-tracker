@@ -1,10 +1,14 @@
 <div id="iss">ISS position: {{iss.location.latitude}}:{{iss.location.longitude}}</div>
 
-<div id="map">
+<!-- <div id="map">
   <map id="map" on-create="mapCreated(map)" data-tap-disabled="true"></map>
 </div>
 
 <div id="twitterFeed">
 	<h3> Twitter feeds</h3>
 	<p ng-repeat='feed in tweets'> {{feed.text}} </p>
+</div> -->
+  <di-three-js-viewer three-js-object="device3DModel" style="width:600px;height:600px; position: absolute; z-index: 200"></di-three-js-viewer>
+  </body>
+</html>
 </div>
