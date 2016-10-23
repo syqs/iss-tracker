@@ -1,4 +1,7 @@
 # ISS Tracker - Angular
+International space station location feed with Angular and Treejs
+
+Demo [iss-tracker23.herokuapp.com/#/](https://iss-tracker23.herokuapp.com/#/)
 
 ## Getting Started
 
@@ -11,7 +14,3 @@ $ npm start
 ```
 
 Now visit [localhost:8000](http://localhost:8000/)
-
-### Running the Tests
-
-There is a basic test framework in your `test/` folder. To run the tests, simply run `npm test`.
