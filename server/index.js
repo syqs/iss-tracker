@@ -14,9 +14,9 @@ routes.get('/api', function(req, res) {
   // Get this data from your twitter apps dashboard 
   // Should be set to use enviroment variables instead
   var config = {
-    "consumerKey": "xibun8IvNjBsZrBQ8E2apBBCr",
-    "consumerSecret": "PU2PUqUUaynlU2t6q6lP8jAV3SaFOHRuG1Ml1Tb0U1heBv4kpR",
-    "bearer_token": "AAAAAAAAAAAAAAAAAAAAADwfxgAAAAAAxAlg3WXq%2BV5Xxaa8mffoVI3djhU%3DtpUXjouzVMRbKcUTk9uaNhcKC0sCvUgOvZReygnAOjv1jWOvMM"
+    "consumerKey": "",
+    "consumerSecret": "",
+    "bearer_token": ""
   }
   
   var twitter = new Twitter(config);
