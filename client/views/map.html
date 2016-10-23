@@ -1,0 +1,13 @@
+<div id="iss">ISS position: {{iss.location.latitude}}:{{iss.location.longitude}}</div>
+<div id="toolbar">
+  <md-button ui-sref="home" class="md-raised">Space view</md-button>
+</div>
+
+<div id="map">
+  <map id="map" on-create="mapCreated(map)" data-tap-disabled="true"></map>
+</div>
+
+<div id="twitterFeed">
+  <h3> Twitter feeds</h3>
+  <p ng-repeat='feed in tweets'> {{feed.text}} </p>
+</div>

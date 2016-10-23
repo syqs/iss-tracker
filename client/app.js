@@ -1,7 +1,8 @@
 // 'use strict';
 
 angular.module('myApp', [
-  'ui.router'
+  'ui.router',
+  'ngMaterial'
 ])
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -12,6 +13,11 @@ angular.module('myApp', [
     .state('home', {
       url: '/',
       templateUrl: 'views/main.html',
+      controller: 'SpaceController'
+    })
+    .state('map', {
+      url: '/',
+      templateUrl: 'views/map.html',
       controller: 'MapController'
     })
 

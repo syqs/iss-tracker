@@ -26,6 +26,13 @@ canvas {
   z-index: 100;
   padding: 15px;
 }
+#toolbar {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  z-index: 220;
+
+}
 .angular-google-map-container {
   height: 400px;
 }
