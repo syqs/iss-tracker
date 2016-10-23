@@ -63,6 +63,11 @@ routes.get('/issLocation', function(req, res) {
       }
       
     });
+    
+    req.on('error', function(err) {
+      console.log('Error: ', err);
+      req.end()
+    });
   });
 });
 
