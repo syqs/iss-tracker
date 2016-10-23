@@ -77,6 +77,12 @@ angular.module('myApp')
       })
   }
 
+  $scope.showTweets = true;
+  $scope.closeTweets = function(){
+    console.log($scope.showTweets)
+    $scope.showTweets = ($scope.showTweets) ? false : true;
+  }
+
   //Add single Marker
   $scope.addMarker = function(pos) {
     var icons = 'images/iss-ico.png'

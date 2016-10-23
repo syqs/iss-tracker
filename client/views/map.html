@@ -7,7 +7,18 @@
   <map id="map" on-create="mapCreated(map)" data-tap-disabled="true"></map>
 </div>
 
-<div id="twitterFeed">
-  <h3> Twitter feeds</h3>
+<div id="twitterFeed" ng-if="showTweets">
+<nav class="dialogOpt">
+  <md-button class="md-fab md-mini md-primary" aria-label="Close" ng-click="closeTweets()" >
+      <i class="fa fa-toggle-on"></i>
+  </md-button>
+</nav>
+  <h3 class="col-50">Twitter feeds</h3>
   <p ng-repeat='feed in tweets'> {{feed.text}} </p>
+</div>
+
+<div class="twFeedsNav" ng-if="showTweets == false">
+  <md-button class="md-fab md-mini md-primary" aria-label="Close" ng-click="closeTweets()" >
+      <i class="fa fa-twitter-square"></i>
+  </md-button>
 </div>

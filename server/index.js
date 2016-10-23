@@ -21,13 +21,13 @@ routes.get('/api', function(req, res) {
   
   var twitter = new Twitter(config);
   
-  // Get 10 tweets containing the keywords
+  //Get 10 tweets containing the keywords
   twitter.get('search/tweets', {
     q: 'space OR spacemedicine OR nasa OR Anasa OR spacex OR Aspacex OR mars OR zerogravity OR rocketscience',
     count: 10
   }, function(error, tweets, response) {
-    console.log(tweets);
-    res.send(tweets)
+   // var tweets = tweets || "twiter data"
+   res.send(tweets)
   });
 
 });
@@ -46,7 +46,7 @@ routes.get('/issLocation', function(req, res) {
     response.on('end', function() {
 
       // Data reception is done, send it to client!
-      var iss = JSON.parse(body);
+      var iss = JSON.parse(body) || "no data recieved";
       res.send(iss)
     });
   });

@@ -2,7 +2,7 @@
 angular.module('myApp')
 
 //Map controller
-.controller('SpaceController', function($scope, $timeout, $http, $mdToast) {
+.controller('SpaceController', function($scope, $timeout, $http, $mdToast, $mdDialog) {
 
   $scope.map;
   $scope.iss = {};
@@ -11,13 +11,18 @@ angular.module('myApp')
 
   // Initialization  
   $scope.$on('$viewContentLoaded', function() {
-    $scope.getIssLoc();
+    $scope.getIssLoc(); 
     $scope.getTwitterFeeds();
     $timeout(function() {
       $scope.showSimpleToast();
     }, 2000)
   })
 
+  $scope.showTweets = true;
+  $scope.closeTweets = function(){
+    console.log($scope.showTweets)
+    $scope.showTweets = ($scope.showTweets) ? false : true;
+  }
     // Get twitter data 
   $scope.getTwitterFeeds = function() {
 
@@ -87,14 +92,14 @@ angular.module('myApp')
     dirLight.position.set(0, -1, 0).normalize();
     scene.add(dirLight);
     dirLight.color.setHSL(0.1, 0.7, 0.5);
+
     // lens flares
     var textureLoader = new THREE.TextureLoader();
     var textureFlare0 = textureLoader.load("textures/lensflare/lensflare0.png");
     var textureFlare2 = textureLoader.load("textures/lensflare/lensflare2.png");
     var textureFlare3 = textureLoader.load("textures/lensflare/lensflare3.png");
-    // addLight(0.55, 0.9, 0.5, 5000, 0, -1000);
-    // addLight(0.08, 0.8, 0.5, 0, 0, -1000);
-    addLight(0.995, 0.5, 0.9, 5, 2, -1);
+
+    addLight(0.995, 0.5, 0.9, 2, 10, -15);
 
     function addLight(h, s, l, x, y, z) {
       var light = new THREE.PointLight(0xffffff, 1.5, 2000);
@@ -185,7 +190,8 @@ angular.module('myApp')
       sphere.rotation.y -= 0.0003;
       sphere.rotation.x -= 0.00004;
       clouds.rotation.y -= 0.0003;
-      cylinder.rotation.x = 0.5 * Math.PI;
+      cylinder.rotation.x += 0.00007 * Math.PI;
+      cylinder.rotation.y += 0.00007 * Math.PI;
       requestAnimationFrame(render);
       renderer.render(scene, camera);
     }
@@ -199,17 +205,6 @@ angular.module('myApp')
           bumpScale: 0.005,
           specularMap: THREE.ImageUtils.loadTexture('images/water_4k.png'),
           specular: new THREE.Color('grey')
-        })
-      );
-    }
-
-    function createSun(radius, segments) {
-      return new THREE.Mesh(
-        new THREE.SphereGeometry(radius, segments, segments),
-        new THREE.MeshPhongMaterial({
-          map: THREE.ImageUtils.loadTexture('images/sun.jpg'),
-          specular: new THREE.Color('white'),
-          shininess: 50
         })
       );
     }
@@ -235,6 +230,17 @@ angular.module('myApp')
     }
 
   }());
+
+  $scope.topDirections = ['left', 'up'];
+  $scope.bottomDirections = ['down', 'right'];
+
+  $scope.isOpen = false;
+
+  $scope.availableModes = ['md-fling', 'md-scale'];
+  $scope.selectedMode = 'md-fling';
+
+  $scope.availableDirections = ['up', 'down', 'left', 'right'];
+  $scope.selectedDirection = 'up';
 
   // Toasts
 
@@ -295,5 +301,8 @@ angular.module('myApp')
       }
     });
   };
+
+  $scope.items = [1,2,3,4,5];
+  $scope.dialog1 = true;
 
 });

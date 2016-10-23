@@ -5,7 +5,12 @@ angular.module('myApp', [
   'ngMaterial'
 ])
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $mdThemingProvider) {
+
+  $mdThemingProvider.theme('default')
+  .primaryPalette('lime')
+  .accentPalette('orange')
+  .dark();
 
   $urlRouterProvider.otherwise('/');
 
@@ -21,4 +26,4 @@ angular.module('myApp', [
       controller: 'MapController'
     })
 
-});
+})

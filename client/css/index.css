@@ -121,3 +121,16 @@ h3{
   bottom:0px;
 }
 
+.twFeedsNav {
+    position: absolute; 
+  text-align: center; 
+  width:100%; 
+  bottom:0px;
+}
+
+.dialogOpt {
+  right: 10px;
+  top:5px;
+  position: absolute;
+}
+
