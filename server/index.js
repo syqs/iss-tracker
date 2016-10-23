@@ -46,7 +46,10 @@ routes.get('/issLocation', function(req, res) {
     response.on('end', function() {
 
       // Data reception is done, send it to client!
-      var iss = JSON.parse(body) || "no data recieved";
+      if(body){
+        var iss = JSON.parse(body);
+      }
+        var iss = "no data getting through right now"
       res.send(iss)
     });
   });
