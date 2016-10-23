@@ -56,7 +56,7 @@ angular.module('myApp')
         scope.$watch("threeJsObject", function(){
             
             if (scope.threeJsObject) {
-                createThreeJsCanvas(element, scope.threeJsObject);
+              createThreeJsCanvas(element, scope.threeJsObject);
             }
             
         }, false);
