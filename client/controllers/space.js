@@ -18,7 +18,7 @@ angular.module('myApp')
     }, 2000)
   })
 
-  $scope.showTweets = true;
+  $scope.showTweets = false;
   $scope.closeTweets = function(){
     console.log($scope.showTweets)
     $scope.showTweets = ($scope.showTweets) ? false : true;
