@@ -65,12 +65,18 @@ angular.module('myApp')
     $http.get("/issLocation")
       .then(function(location) {
         $scope.iss.location = location.data.iss_position;
-        
-        // Create a marker with latest position
-        $scope.addMarker({
-          lat: location.data.iss_position.latitude,
-          lng: location.data.iss_position.longitude
-        })
+        if(!location.data.iss_position.latitude){
+          $scope.addMarker({
+            lat: 'no data available',
+            lng: '...'
+          })
+        }else{
+          // Create a marker with latest position
+          $scope.addMarker({
+            lat: location.data.iss_position.latitude,
+            lng: location.data.iss_position.longitude
+          })
+        }
       })
       .catch(function(err) {
         console.log('error: ', err)
