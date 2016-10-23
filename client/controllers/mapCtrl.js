@@ -71,6 +71,7 @@ angular.module('myApp')
             lng: '...'
           })
         }else{
+
           // Create a marker with latest position
           $scope.addMarker({
             lat: location.data.iss_position.latitude,
@@ -99,6 +100,7 @@ angular.module('myApp')
       },
       icon: icons
     });
+    
     // Put marker on the map
     marker.setMap($scope.map);
   }

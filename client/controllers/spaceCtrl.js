@@ -189,10 +189,6 @@ angular.module('myApp')
 
     scene.add(new THREE.AmbientLight(0x333333));
 
-    // var light = new THREE.DirectionalLight(0xffffff, 1);
-    // light.position.set(5, 3, 5);
-    // scene.add(light);
-
     var sphere = createSphere(radius, segments);
     sphere.rotation.y = rotation;
     scene.add(sphere)
@@ -222,7 +218,6 @@ angular.module('myApp')
 
     var controls = new THREE.TrackballControls(camera);
 
-
     webglEl.appendChild(renderer.domElement);
 
     render();
@@ -238,6 +233,7 @@ angular.module('myApp')
       renderer.render(scene, camera);
     }
 
+    // Helpers
     function createSphere(radius, segments) {
       return new THREE.Mesh(
         new THREE.SphereGeometry(radius, segments, segments),

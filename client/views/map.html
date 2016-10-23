@@ -9,11 +9,11 @@
 
 <div id="twitterFeed" ng-if="showTweets">
 
-<nav class="dialogOpt">
-  <md-button class="md-fab md-mini md-primary" aria-label="Close" ng-click="closeTweets()" >
-      <i class="fa fa-toggle-on"></i>
-  </md-button>
-</nav>
+  <nav class="dialogOpt">
+    <md-button class="md-fab md-mini md-primary" aria-label="Close" ng-click="closeTweets()" >
+        <i class="fa fa-toggle-on"></i>
+    </md-button>
+  </nav>
 
   <h3 class="col-50">Twitter feeds</h3>
   <p ng-repeat='feed in tweets'> {{feed.text}} </p>

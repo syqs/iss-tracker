@@ -44,13 +44,24 @@ routes.get('/issLocation', function(req, res) {
       body += data;
     });
     response.on('end', function() {
+      var test = '';
 
       // Data reception is done, send it to client!
       if(body){
-        var iss = JSON.parse(body);
+
+        // Deny service if ISS is responding with Error
+        if (~body.indexOf("Error")){
+          res.send("Error, ISS data not recieved")
+        
+        }else{
+          var iss = JSON.parse(body);
+          res.send(iss);
+        }
+
+      }else{
+        res.send("cant get data");
       }
-        var iss = "no data getting through right now"
-      res.send(iss)
+      
     });
   });
 });
