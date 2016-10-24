@@ -1,0 +1,13 @@
+{
+  "metadata": {
+    "version": 4.4,
+    "type": "Object",
+    "generator": "Object3D.toJSON"
+  },
+  "object": {
+    "uuid": "2926D335-8A41-4472-A512-F33F9B714907",
+    "type": "Group",
+    "name": "Group 1",
+    "matrix": [1,0,0,0,0,1,0,0,0,0,1,0,-16.622182846069336,-6.7650957107543945,3.5298914909362793,1]
+  }
+}

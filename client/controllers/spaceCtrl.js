@@ -11,18 +11,18 @@ angular.module('myApp')
 
   // Initialization  
   $scope.$on('$viewContentLoaded', function() {
-    $scope.getIssLoc(); 
-    $scope.getTwitterFeeds();
+    $scope.getIssLoc();
+    // $scope.getTwitterFeeds();
     $timeout(function() {
       $scope.showSimpleToast();
     }, 2000)
   })
 
   $scope.showTweets = false;
-  $scope.closeTweets = function(){
-    console.log($scope.showTweets)
-    $scope.showTweets = ($scope.showTweets) ? false : true;
-  }
+  $scope.closeTweets = function() {
+      console.log($scope.showTweets)
+      $scope.showTweets = ($scope.showTweets) ? false : true;
+    }
     // Get twitter data 
   $scope.getTwitterFeeds = function() {
 
@@ -55,9 +55,9 @@ angular.module('myApp')
     $scope.getIssLoc();
   }, 4000);
 
-  setInterval(function() {
-    $scope.getTwitterFeeds();
-  }, 30000);
+  // setInterval(function() {
+  //   $scope.getTwitterFeeds();
+  // }, 30000);
 
   // Toasts
 
@@ -102,6 +102,11 @@ angular.module('myApp')
       .hideDelay(3000)
     );
   };
+
+
+  //ISS position: 27.300134631399445:-92.83472225533022
+
+
 
   // Webgl shennanigans 
   var scene, camera, renderer;
@@ -179,10 +184,16 @@ angular.module('myApp')
     }
 
     var camera = new THREE.PerspectiveCamera(430, width / height, 0.01, 1000);
-    camera.position.z = 1.5;
-    camera.position.x = 0.7;
-    var renderer = new THREE.WebGLRenderer( { antialias: true, alpha: true } );
-    renderer.setClearColor( scene.fog.color );
+    camera.position.z = 0.8;
+    camera.position.x = 0.8;
+    camera.position.y = -0.22;
+    camera.applyMatrix(new THREE.Matrix4().makeTranslation(0.97, 0.48, -0.12));
+
+    var renderer = new THREE.WebGLRenderer({
+      antialias: true,
+      alpha: true
+    });
+    renderer.setClearColor(scene.fog.color);
     renderer.gammaInput = true;
     renderer.gammaOutput = true;
     renderer.setSize(width, height);
@@ -191,6 +202,10 @@ angular.module('myApp')
 
     var sphere = createSphere(radius, segments);
     sphere.rotation.y = rotation;
+    sphere.rotation.x = 1;
+    sphere.rotation.y = 15;
+    sphere.rotation.z = 186;
+
     scene.add(sphere)
 
     var clouds = createClouds(radius, segments);
@@ -202,19 +217,62 @@ angular.module('myApp')
 
     // ISS
     var cyl_material = new THREE.MeshBasicMaterial({
-      color: 0xff0000
+      color: 0x283037
+    });
+    var cyl_material2 = new THREE.MeshBasicMaterial({
+      color: 0x9fa7ac
     });
     var cyl_width = 0.01;
     var cyl_height = 0.02;
 
     // THREE.CylinderGeometry(bottomRadius, topRadius, height, segmentsRadius, segmentsHeight, openEnded )
     var cylGeometry = new THREE.CylinderGeometry(cyl_width, cyl_width, cyl_height, 20, 1, false);
-
+    var cylGeometry2 = new THREE.CylinderGeometry(cyl_width / 3, cyl_width / 3, cyl_height * 7, 20, 1, false);
     // translate the cylinder geometry so that the desired point within the geometry is now at the origin
-    cylGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, 0.38, -0.52));
+    cylGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, 0.38, -0.22));
+    cylGeometry2.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, 0.38, -0.22));
     var cylinder = new THREE.Mesh(cylGeometry, cyl_material);
+    var cylinder2 = new THREE.Mesh(cylGeometry2, cyl_material);
 
     scene.add(cylinder);
+    scene.add(cylinder2);
+
+    var material = new THREE.MeshBasicMaterial({
+      color: 0xff9d00,
+      side: THREE.DoubleSide,
+      shininess: 1
+    });
+
+    var material2 = new THREE.MeshPhongMaterial({
+      color: 0xff6519,
+      specular: 0xffb600,
+      shininess: 100,
+      side: THREE.DoubleSide,
+      map: THREE.ImageUtils.loadTexture('textures/bee2.png')
+    })
+
+    var spaceStation = [];
+    var i = 1;
+    var xCoor = 0;
+    while (i <= 9) {
+      if (i === 5) {
+        //skip this row of sails 
+      } else {
+        xCoor = (0.017 * i) + 0.295;
+        console.log("le xcor ", xCoor)
+        var object = THREE.SceneUtils.createMultiMaterialObject(new THREE.PlaneGeometry(0.07, 0.010, 0.032), [material2]);
+
+        var parent = new THREE.Object3D();
+        object.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, xCoor, -0.22));
+        spaceStation.push(object)
+      }
+      i++
+    }
+    spaceStation.forEach(function(part) {
+      parent.add(part);
+    })
+
+    scene.add(parent)
 
     var controls = new THREE.TrackballControls(camera);
 
@@ -228,7 +286,11 @@ angular.module('myApp')
       sphere.rotation.x -= 0.00004;
       clouds.rotation.y -= 0.0003;
       cylinder.rotation.x += 0.00007 * Math.PI;
-      cylinder.rotation.y += 0.00007 * Math.PI;
+      cylinder.rotation.y -= 0.00007 * Math.PI;
+      cylinder2.rotation.x += 0.00007 * Math.PI;
+      cylinder2.rotation.y -= 0.00007 * Math.PI;
+      parent.rotation.x += 0.00007 * Math.PI;
+      parent.rotation.y -= 0.00007 * Math.PI;
       requestAnimationFrame(render);
       renderer.render(scene, camera);
     }
