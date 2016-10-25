@@ -53,7 +53,7 @@ angular.module('myApp')
   // Run these periodically
   setInterval(function() {
     $scope.getIssLoc();
-  }, 4000);
+  }, 8000);
 
   // setInterval(function() {
   //   $scope.getTwitterFeeds();
@@ -282,8 +282,9 @@ angular.module('myApp')
 
     function render() {
       controls.update();
-      sphere.rotation.y -= 0.0003;
-      sphere.rotation.x -= 0.00004;
+      sphere.rotation.y -= 0.00003;
+      sphere.rotation.x += 0.0004;
+      sphere.rotation.z -= 0.0002;
       clouds.rotation.y -= 0.0003;
       cylinder.rotation.x += 0.00007 * Math.PI;
       cylinder.rotation.y -= 0.00007 * Math.PI;

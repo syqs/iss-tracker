@@ -22,6 +22,7 @@ angular.module('myApp', [
     })
     .state('map', {
       url: '/',
+      cache: false,
       templateUrl: 'views/map.html',
       controller: 'MapController'
     })
