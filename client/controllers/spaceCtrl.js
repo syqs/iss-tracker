@@ -41,10 +41,11 @@ angular.module('myApp')
 
     // Initiate a call to back end
     $http.get("/issLocation")
+
       .then(function(location) {
         $scope.iss.location = location.data.iss_position;
-
       })
+
       .catch(function(err) {
         console.log('error: ', err)
       });
@@ -103,10 +104,8 @@ angular.module('myApp')
     );
   };
 
-
-  //ISS position: 27.300134631399445:-92.83472225533022
-
-
+  // ISS position: 27.300134631399445:-92.83472225533022
+  // currently not updated real time :(
 
   // Webgl shennanigans 
   var scene, camera, renderer;
@@ -125,7 +124,7 @@ angular.module('myApp')
       height = window.innerHeight;
 
     // Earth params
-    var radius = 0.5,
+    var radius = 0.6,
       segments = 32,
       rotation = 6;
 
@@ -202,11 +201,54 @@ angular.module('myApp')
 
     var sphere = createSphere(radius, segments);
     sphere.rotation.y = rotation;
-    sphere.rotation.x = 1;
-    sphere.rotation.y = 15;
-    sphere.rotation.z = 186;
-
+    sphere.rotation.x = -75.642603;
+    sphere.rotation.y = 7.561352;
+    // sphere.rotation.z = 186;
+    //8.211352, -72.242603
     scene.add(sphere)
+
+    var sphereGeom = new THREE.SphereGeometry(0.53, 64, 32);
+
+    var moonTexture = THREE.ImageUtils.loadTexture('images/2_no_clouds_4k.jpg');
+    var moonMaterial = new THREE.MeshBasicMaterial({
+      map: moonTexture
+    });
+    // var moon = new THREE.Mesh(sphereGeom, moonMaterial);
+    // moon.position.set(0.8, 0.38, -0.22);
+    // scene.add(moon);
+
+    // create custom material from the shader code above
+    // that is within specially labeled script tags
+    var customMaterial = new THREE.ShaderMaterial({
+      uniforms: {
+        "c": {
+          type: "f",
+          value: 0.12
+        },
+        "p": {
+          type: "f",
+          value: 7.1
+        },
+        glowColor: {
+          type: "c",
+          value: new THREE.Color(0x76cde8)
+        },
+        viewVector: {
+          type: "v3",
+          value: camera.position
+        }
+      },
+      vertexShader: document.getElementById('vertexShader').textContent,
+      fragmentShader: document.getElementById('fragmentShader').textContent,
+      side: THREE.FrontSide,
+      blending: THREE.AdditiveBlending,
+      transparent: true
+    });
+
+    var moonGlow = new THREE.Mesh(sphereGeom.clone(), customMaterial.clone());
+    moonGlow.position.set(0, 0, 0)
+    moonGlow.scale.multiplyScalar(1.18);
+    scene.add(moonGlow);
 
     var clouds = createClouds(radius, segments);
     clouds.rotation.y = rotation;
@@ -215,19 +257,21 @@ angular.module('myApp')
     var stars = createStars(90, 64);
     scene.add(stars);
 
-    // ISS
+    // ISS body
     var cyl_material = new THREE.MeshBasicMaterial({
       color: 0x283037
     });
     var cyl_material2 = new THREE.MeshBasicMaterial({
       color: 0x9fa7ac
     });
+
     var cyl_width = 0.01;
     var cyl_height = 0.02;
 
     // THREE.CylinderGeometry(bottomRadius, topRadius, height, segmentsRadius, segmentsHeight, openEnded )
     var cylGeometry = new THREE.CylinderGeometry(cyl_width, cyl_width, cyl_height, 20, 1, false);
     var cylGeometry2 = new THREE.CylinderGeometry(cyl_width / 3, cyl_width / 3, cyl_height * 7, 20, 1, false);
+
     // translate the cylinder geometry so that the desired point within the geometry is now at the origin
     cylGeometry.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, 0.38, -0.22));
     cylGeometry2.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, 0.38, -0.22));
@@ -243,6 +287,7 @@ angular.module('myApp')
       shininess: 1
     });
 
+    // ISS Solar Arrays  :)
     var material2 = new THREE.MeshPhongMaterial({
       color: 0xff6519,
       specular: 0xffb600,
@@ -251,7 +296,7 @@ angular.module('myApp')
       map: THREE.ImageUtils.loadTexture('textures/bee2.png')
     })
 
-    var spaceStation = [];
+    var solarArray = [];
     var i = 1;
     var xCoor = 0;
     while (i <= 9) {
@@ -259,16 +304,17 @@ angular.module('myApp')
         //skip this row of sails 
       } else {
         xCoor = (0.017 * i) + 0.295;
-        console.log("le xcor ", xCoor)
         var object = THREE.SceneUtils.createMultiMaterialObject(new THREE.PlaneGeometry(0.07, 0.010, 0.032), [material2]);
 
         var parent = new THREE.Object3D();
         object.applyMatrix(new THREE.Matrix4().makeTranslation(0.8, xCoor, -0.22));
-        spaceStation.push(object)
+        solarArray.push(object)
       }
       i++
     }
-    spaceStation.forEach(function(part) {
+
+    // add the sails to the object we are animating
+    solarArray.forEach(function(part) {
       parent.add(part);
     })
 
@@ -280,6 +326,7 @@ angular.module('myApp')
 
     render();
 
+    // needs refactor
     function render() {
       controls.update();
       sphere.rotation.y -= 0.00003;

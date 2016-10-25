@@ -26,6 +26,17 @@ canvas {
   z-index: 100;
   padding: 15px;
 }
+
+#sc-widget {
+  position: absolute;
+  z-index: 230;
+  right: -20px;
+  bottom: -14px;
+}
+#widget > div.singleSound.g-box-full.state-small > div > div{
+  background:  transparent;
+}
+
 #toolbar {
   position: absolute;
   top: 10px;

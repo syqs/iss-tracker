@@ -57,17 +57,14 @@ routes.get('/issLocation', function(req, res) {
           var iss = JSON.parse(body);
           res.send(iss);
         }
-
       }else{
         res.send("cant get data");
       }
-      
     });
-    
-    req.on('error', function(err) {
-      console.log('Error: ', err);
-      req.end()
-    });
+  })
+  // Catch errors if they happen regardles of error message being omited
+  .on('error', function(e) {
+    console.log("Got error: " + e.message);
   });
 });
 
