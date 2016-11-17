@@ -92,11 +92,12 @@ angular.module('myApp')
 
   //Add single Marker
   $scope.addMarker = function(pos) {
+    console.log('this is le pos: ', pos)
     var icons = 'images/iss-ico.png'
     var marker = new google.maps.Marker({
       position: {
-        lat: pos.lat,
-        lng: pos.lng
+        lat: parseInt(pos.lat),
+        lng: parseInt(pos.lng)
       },
       icon: icons
     });

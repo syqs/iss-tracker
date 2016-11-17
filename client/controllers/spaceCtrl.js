@@ -209,9 +209,9 @@ angular.module('myApp')
 
     var sphereGeom = new THREE.SphereGeometry(0.53, 64, 32);
 
-    var moonTexture = THREE.ImageUtils.loadTexture('images/2_no_clouds_4k.jpg');
+    var athmosphereTexture = THREE.ImageUtils.loadTexture('images/2_no_clouds_4k.jpg');
     var moonMaterial = new THREE.MeshBasicMaterial({
-      map: moonTexture
+      map: athmosphereTexture
     });
     // var moon = new THREE.Mesh(sphereGeom, moonMaterial);
     // moon.position.set(0.8, 0.38, -0.22);
@@ -245,10 +245,10 @@ angular.module('myApp')
       transparent: true
     });
 
-    var moonGlow = new THREE.Mesh(sphereGeom.clone(), customMaterial.clone());
-    moonGlow.position.set(0, 0, 0)
-    moonGlow.scale.multiplyScalar(1.18);
-    scene.add(moonGlow);
+    var earthGlow = new THREE.Mesh(sphereGeom.clone(), customMaterial.clone());
+    earthGlow.position.set(0, 0, 0)
+    earthGlow.scale.multiplyScalar(1.18);
+    scene.add(earthGlow);
 
     var clouds = createClouds(radius, segments);
     clouds.rotation.y = rotation;
